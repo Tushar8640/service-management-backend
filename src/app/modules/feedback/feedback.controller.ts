@@ -2,9 +2,8 @@ import httpStatus from "http-status";
 import {catchAsync} from "../../../shared/catchAsync";
 import {sendResponse} from "../../../shared/sendResponse";
 import {Request, Response} from "express";
-import { IFeedback } from "./feedback.interface";
-import { addFeedbackService, deleteFeedbackService, getAllfeedbackService, getSingleFeedbackService } from "./feedback.service";
-
+import {addFeedbackService, deleteFeedbackService, getAllfeedbackService, getSingleFeedbackService} from "./feedBack.service";
+import {IFeedback} from "./feedBack.interface";
 
 //create feedback
 export const createFeedback = catchAsync(async (req: Request, res: Response) => {
@@ -21,33 +20,31 @@ export const createFeedback = catchAsync(async (req: Request, res: Response) => 
 
 //get a single feedback
 export const getSingleFeedback = catchAsync(async (req: Request, res: Response) => {
-  const {feedbackId} = req.body;
-  const feedback = await getSingleFeedbackService(feedbackId);
+  const {id} = req.params;
+  const feedback = await getSingleFeedbackService(id);
   sendResponse<IFeedback>(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "Cart retrieved successfully!",
+    message: "feedback retrieved successfully!",
     data: feedback,
   });
 });
 
-
-//get all feedback 
+//get all feedback
 export const getAllFeedback = catchAsync(async (req: Request, res: Response) => {
-  const feedback = await getAllfeedbackService();
+  const feedbacks = await getAllfeedbackService();
   sendResponse<IFeedback[]>(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: "Feedbacks retrieved successfully!",
-    data: feedback,
+    data: feedbacks,
   });
 });
 
-
 //delete feedback
 export const deleteFeedback = catchAsync(async (req: Request, res: Response) => {
-  const {feedbackId} = req.body;
-  const feedback = await deleteFeedbackService(feedbackId);
+  const {id} = req.params;
+  const feedback = await deleteFeedbackService(id);
   sendResponse<IFeedback>(res, {
     statusCode: httpStatus.OK,
     success: true,

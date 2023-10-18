@@ -1,12 +1,14 @@
-import { Schema, model } from "mongoose";
-import { FeedbackModel, IFeedback } from "./feedback.interface";
+import {Schema, model} from "mongoose";
+import {FeedbackModel, IFeedback} from "./feedBack.interface";
 
 const FeedbackSchema = new Schema<IFeedback, FeedbackModel>(
   {
-    email: {
-      type: String,
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
       required: true,
     },
+
     rating: {
       type: Number,
       required: true,

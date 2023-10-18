@@ -1,5 +1,5 @@
-import { Schema, model } from "mongoose";
-import { FaqModel, IFaq } from "./faq.interface";
+import {Schema, model} from "mongoose";
+import {FaqModel, IFaq} from "./faq.interface";
 
 const FaqSchema = new Schema<IFaq, FaqModel>(
   {

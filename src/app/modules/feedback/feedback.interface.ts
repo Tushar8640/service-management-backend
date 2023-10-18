@@ -1,7 +1,8 @@
-import {Model} from "mongoose";
+import {Model, Types} from "mongoose";
+import {IUser} from "../user/user.interface";
 
 export type IFeedback = {
-  email: string;
+  user: Types.ObjectId | IUser;
   rating: number;
   comments: string;
 };

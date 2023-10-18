@@ -1,6 +1,11 @@
 import {z} from "zod";
 
 export const createServiceZodSchema = z.object({
+  headers: z.object({
+    authorization: z.string().nonempty({
+      message: "Authorization is required",
+    }),
+  }),
   body: z
     .object({
       title: z.string({
@@ -25,6 +30,11 @@ export const createServiceZodSchema = z.object({
     .strict(),
 });
 export const updateServiceZodSchema = z.object({
+  headers: z.object({
+    authorization: z.string().nonempty({
+      message: "Authorization is required",
+    }),
+  }),
   body: z
     .object({
       title: z.string().optional(),
@@ -35,16 +45,6 @@ export const updateServiceZodSchema = z.object({
       category: z.string().optional(),
       images: z.array(z.string()).optional(),
       addedBy: z.string().optional(),
-    })
-    .strict(),
-});
-
-export const addReviewZodSchema = z.object({
-  body: z
-    .object({
-      review: z.string({required_error: "Review is required"}),
-      rating: z.number({required_error: "rating is required"}),
-      user: z.string({required_error: "user is required"}),
     })
     .strict(),
 });
