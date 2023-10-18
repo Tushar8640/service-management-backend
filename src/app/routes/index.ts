@@ -1,18 +1,20 @@
 import express from "express";
-import {AuthRoutes} from "../modules/auth/auth.route";
-import {UserRoutes} from "../modules/user/user.route";
-import {CartRoutes} from "../modules/cart/cart.route";
-import {OrderRoutes} from "../modules/order/order.route";
-import {ServiceRoutes} from "../modules/service/service.route";
+import { AuthRoutes } from "../modules/auth/auth.route";
+import { UserRoutes } from "../modules/user/user.route";
+import { CartRoutes } from "../modules/cart/cart.route";
+import { OrderRoutes } from "../modules/order/order.route";
+import { ServiceRoutes } from "../modules/service/service.route";
+import { feedbackRoutes } from "../modules/feedback/feedback.route";
 
 const router = express.Router();
 //
 const moduleRoutes = [
-  {path: "/auth", route: AuthRoutes},
-  {path: "/users", route: UserRoutes},
-  {path: "/services", route: ServiceRoutes},
-  {path: "/carts", route: CartRoutes},
-  {path: "/bookings", route: OrderRoutes},
+  { path: "/auth", route: AuthRoutes },
+  { path: "/users", route: UserRoutes },
+  { path: "/services", route: ServiceRoutes },
+  { path: "/carts", route: CartRoutes },
+  { path: "/bookings", route: OrderRoutes },
+  { path: "/feedbacks", route: feedbackRoutes },
 ];
 moduleRoutes.forEach((route) => router.use(route.path, route.route));
 
