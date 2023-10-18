@@ -1,14 +1,19 @@
 import express from "express";
-import {createCart, deleteCart, getCartByUser, getSingleCart, handleQuantity} from "./feedback.controller";
+import {
+  createFeedback,
+  deleteFeedback,
+  getAllFeedback,
+  getSingleFeedback,
+} from "./feedback.controller";
 
 const router = express.Router();
 //,
 
-router.post("/", createCart);
-router.post("/delete", deleteCart);
-router.post("/handleQuantity", handleQuantity);
-router.get("/:id", getCartByUser);
-router.get("/", getSingleCart);
+router.post("/", createFeedback);
+router.post("/delete", deleteFeedback);
+
+router.get("/:id", getSingleFeedback);
+router.get("/", getAllFeedback);
 
 //
 export const feedbackRoutes = router;

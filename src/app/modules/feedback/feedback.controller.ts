@@ -1,62 +1,58 @@
 import httpStatus from "http-status";
 import {catchAsync} from "../../../shared/catchAsync";
-import {ICart} from "./feedback.interface";
 import {sendResponse} from "../../../shared/sendResponse";
 import {Request, Response} from "express";
-import {addCartService, deleteCartService, getCartByUserService, getSingleCartService, handleQuantityService} from "./feedback.service";
-//create cart
-export const createCart = catchAsync(async (req: Request, res: Response) => {
-  const cartData = req.body;
+import { IFeedback } from "./feedback.interface";
+import { addFeedbackService, deleteFeedbackService, getAllfeedbackService, getSingleFeedbackService } from "./feedback.service";
 
-  const cart = await addCartService(cartData);
-  sendResponse<ICart>(res, {
+
+//create feedback
+export const createFeedback = catchAsync(async (req: Request, res: Response) => {
+  const data = req.body;
+
+  const feedback = await addFeedbackService(data);
+  sendResponse<IFeedback>(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "Cart created successfully!",
-    data: cart,
+    message: "Feedback created successfully!",
+    data: feedback,
   });
 });
-//get a single cart
-export const getSingleCart = catchAsync(async (req: Request, res: Response) => {
-  const {user, serviceId} = req.body;
-  const cart = await getSingleCartService(user, serviceId);
-  sendResponse<ICart>(res, {
+
+//get a single feedback
+export const getSingleFeedback = catchAsync(async (req: Request, res: Response) => {
+  const {feedbackId} = req.body;
+  const feedback = await getSingleFeedbackService(feedbackId);
+  sendResponse<IFeedback>(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: "Cart retrieved successfully!",
-    data: cart,
+    data: feedback,
   });
 });
-//get all cart by user
-export const getCartByUser = catchAsync(async (req: Request, res: Response) => {
+
+
+//get all feedback 
+export const getAllFeedback = catchAsync(async (req: Request, res: Response) => {
   const {id} = req.params;
-  const cart = await getCartByUserService(id);
-  sendResponse<ICart[]>(res, {
+  const feedback = await getAllfeedbackService();
+  sendResponse<IFeedback[]>(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "Carts retrieved successfully!",
-    data: cart,
+    message: "Feedbacks retrieved successfully!",
+    data: feedback,
   });
 });
-//remove cart
-export const deleteCart = catchAsync(async (req: Request, res: Response) => {
-  const {user, serviceId} = req.body;
-  const cart = await deleteCartService(user, serviceId);
-  sendResponse<ICart>(res, {
+
+
+//delete feedback
+export const deleteFeedback = catchAsync(async (req: Request, res: Response) => {
+  const {feedbackId} = req.body;
+  const feedback = await deleteFeedbackService(feedbackId);
+  sendResponse<IFeedback>(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "Cart deleted successfully!",
-    data: cart,
-  });
-});
-//handle quantity
-export const handleQuantity = catchAsync(async (req: Request, res: Response) => {
-  const {user, serviceId, operation} = req.body;
-  const cart = await handleQuantityService(user, serviceId, operation);
-  sendResponse<ICart>(res, {
-    statusCode: httpStatus.OK,
-    success: true,
-    message: "Quantity updated successfully!",
-    data: cart,
+    message: "Feedback deleted successfully!",
+    data: feedback,
   });
 });

@@ -1,13 +1,9 @@
-import {Model, Types} from "mongoose";
-import {IUser} from "../user/user.interface";
-import {IService} from "../service/service.interface";
+import {Model} from "mongoose";
 
-export type ICart = {
-  serviceId: Types.ObjectId | IService;
-  title: string;
-  price: number;
-  quantity: number;
-  user: Types.ObjectId | IUser;
+export type IFeedback = {
+  email: string;
+  rating: number;
+  comments: string;
 };
 
-export type CartModel = Model<ICart, Record<string, unknown>>;
+export type FeedbackModel = Model<IFeedback, Record<string, unknown>>;

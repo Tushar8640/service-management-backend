@@ -1,30 +1,19 @@
-import {Schema, model} from "mongoose";
-import {CartModel, ICart} from "./feedback.interface";
+import { Schema, model } from "mongoose";
+import { FeedbackModel, IFeedback } from "./feedback.interface";
 
-const CartSchema = new Schema<ICart, CartModel>(
+const FeedbackSchema = new Schema<IFeedback, FeedbackModel>(
   {
-    serviceId: {
-      type: Schema.Types.ObjectId,
-      required: true,
-      ref: "Service",
-    },
-    title: {
+    email: {
       type: String,
       required: true,
     },
-    price: {
+    rating: {
       type: Number,
       required: true,
     },
-    quantity: {
-      type: Number,
+    comments: {
+      type: String,
       required: true,
-    },
-
-    user: {
-      type: Schema.Types.ObjectId,
-      required: true,
-      ref: "User",
     },
   },
   {
@@ -32,4 +21,4 @@ const CartSchema = new Schema<ICart, CartModel>(
   }
 );
 //create model
-export const Cart = model<ICart, CartModel>("Cart", CartSchema);
+export const Feedback = model<IFeedback, FeedbackModel>("Feedback", FeedbackSchema);
