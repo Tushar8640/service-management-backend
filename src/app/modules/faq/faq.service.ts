@@ -13,13 +13,13 @@ export const addFaqService = async (payload: IFaq): Promise<IFaq | null> => {
   return newFaq;
 };
 
-//get cart
+//get faq
 export const getSingleFaqService = async (faqId: string): Promise<IFaq | null> => {
   const faq = await Faq.findOne({faqId});
   return faq;
 };
 
-//get all feedback by user
+//get all faq
 export const getAllFaqService = async (): Promise<IFaq[]> => {
   const faq = await Faq.find({});
   return faq;
