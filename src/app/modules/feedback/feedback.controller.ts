@@ -34,7 +34,6 @@ export const getSingleFeedback = catchAsync(async (req: Request, res: Response) 
 
 //get all feedback 
 export const getAllFeedback = catchAsync(async (req: Request, res: Response) => {
-  const {id} = req.params;
   const feedback = await getAllfeedbackService();
   sendResponse<IFeedback[]>(res, {
     statusCode: httpStatus.OK,
