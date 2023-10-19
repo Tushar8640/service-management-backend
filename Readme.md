@@ -67,3 +67,6 @@ model
   userid
   views
   like
+
+cart booking duplicate added, user duplicate key error from mongoose
+get all booking for admin
