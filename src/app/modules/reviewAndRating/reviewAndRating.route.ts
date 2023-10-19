@@ -1,5 +1,5 @@
 import express from "express";
-import {addReviewAndRating, deleteReviewAndRating, getAllReviewAndRating, getAllReviewAndRatingByUser, getSingleReviewAndRating, updateReviewAndRating} from "./reviewAndRating.controller";
+import {addReviewAndRating, deleteReviewAndRating, getAllReviewAndRating, getAllReviewAndRatingByService, getAllReviewAndRatingByUser, getSingleReviewAndRating, updateReviewAndRating} from "./reviewAndRating.controller";
 import {validateRequest} from "../../middlewares/validateRequest";
 import {createReviewRatingZodSchema} from "./reviewAndRating.validation";
 import {ENUM_USER_ROLE} from "../../../enums/user";
@@ -13,6 +13,7 @@ router.post("/", auth(ENUM_USER_ROLE.USER), validateRequest(createReviewRatingZo
 router.get("/:id", getSingleReviewAndRating);
 router.get("/getAll", getAllReviewAndRating);
 router.get("/getByUser/:id", getAllReviewAndRatingByUser);
+router.get("/getByService/:id", getAllReviewAndRatingByService);
 router.post("/update", updateReviewAndRating);
 router.delete("/:id", deleteReviewAndRating);
 //
