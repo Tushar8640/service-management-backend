@@ -19,7 +19,7 @@ export const getSingleCartService = async (user: string, serviceId: string): Pro
 
 //get all cart by user
 export const getCartByUserService = async (user: string): Promise<ICart[]> => {
-  const cart = await Cart.find({user});
+  const cart = await Cart.find({user}).populate("serviceId");
   return cart;
 };
 
