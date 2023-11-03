@@ -1,4 +1,4 @@
-# Project Title (Your Project's Name)
+# Project Title (Service management)
 
 - FrontEnd repo: https://github.com/Tushar8640/service-management-frontend
 - Backend repo: https://github.com/Tushar8640/service-management-backend
